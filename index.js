@@ -1,4 +1,3 @@
-// index.js (Your main server file)
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -17,7 +16,7 @@ app.use(express.json());
 // CORS Middleware to allow requests from frontend
 app.use(
   cors({
-    origin: "*",  // Allow all origins (or specify your frontend domain)
+    origin: "https://crm-new-ry3x.vercel.app",  // Update this if necessary
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
