@@ -1,5 +1,5 @@
 import otpGenerator from 'otp-generator';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../config/dbConfig.js';  // Ensure db is correctly imported
 import { sendMail } from '../utils/mailer.js'; // Send OTP to email
