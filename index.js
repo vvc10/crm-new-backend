@@ -1,5 +1,3 @@
-
-
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -9,21 +7,23 @@ import queryRoutes from './routes/queryRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Define __dirname in ES module scope
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
 
 // Middleware to handle JSON requests
 app.use(express.json());
- 
-
 
 // CORS Middleware to allow requests from frontend
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',  
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
@@ -62,7 +62,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/payments', paymentRoutes);
 app.use('/api/v1/queries', queryRoutes);
 app.use('/api/v1/admin', adminRoutes);
-app.use('/api/v1/users', userRoutes); 
+app.use('/api/v1/users', userRoutes);
 
 // Error handling middleware for any errors
 app.use((err, req, res, next) => {
