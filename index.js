@@ -7,12 +7,6 @@ import queryRoutes from './routes/queryRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-// Define __dirname in ES module scope
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const app = express();
@@ -44,15 +38,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve frontend in production (if applicable)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
-
 // Routes
 app.get('/', (req, res) => {
   res.send('Backend is up and running!');
@@ -64,7 +49,7 @@ app.use('/api/v1/queries', queryRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/users', userRoutes);
 
-// Error handling middleware for any errors
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Internal Server Error', error: err.message });
