@@ -21,7 +21,7 @@ app.use(express.json());
 // CORS Middleware to allow requests from frontend
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Make sure FRONTEND_URL is set in your .env
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',  
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   })
